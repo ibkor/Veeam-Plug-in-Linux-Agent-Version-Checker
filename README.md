@@ -1,4 +1,4 @@
-# Veeam-Plug-in-Linux-Agent-Version-Checker
+# Veeam-Plug-in-Version-Checker
 
   This PowerShell script verifies the installed Veeam plugin versions on a list of Linux hosts. It reads a list of hostnames from a CSV file, connects to each host using SSH, and retrieves the version details of the Veeam plugin. 
   The results are logged and exported to a new CSV file for easy review.
