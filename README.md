@@ -32,8 +32,11 @@ Configure Variables:
 Update the following variables in the script as necessary:
 
 `$csvFilePath`: Path to the CSV file containing the hostnames.
+
 `$username`: The SSH username used to connect to the Linux hosts (default is set to "root").
+
 `$LogFilePath`: Path to the log file for storing verification details.
+
 `$outputCsvFilePath`: Path for outputting the Veeam version results in CSV format.
 
 
