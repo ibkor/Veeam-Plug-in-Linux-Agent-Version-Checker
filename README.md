@@ -10,16 +10,22 @@ Prerequisites
   You need to have the appropriate permissions to access the Linux hosts.
 
 Usage
+
   CSV File Preparation:
+  
   Create a CSV file containing the hostnames of the Linux machines.
   The CSV should have a single column named Hostname.
   Save the file at the specified location or update the $csvFilePath variable in the script accordingly.
+  
   Example hostnames.csv:
 
-`Hostname
-linux-host-1
-linux-host-2
-linux-host-3`
+`Hostname`
+
+`linux-host-1`
+
+`linux-host-2`
+
+`linux-host-3`
 
 Configure Variables:
 
