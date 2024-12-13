@@ -6,6 +6,8 @@
 Prerequisites
 
   PowerShell must be installed on your machine.
+  Windows Server 2019 or later.
+  For Windows Server 2016 or earlier, OpenSSH must be enabled manually.
   The ssh command must be available in the environment (ensure OpenSSH is installed and configured).
   You need to have the appropriate permissions to access the Linux hosts.
 
