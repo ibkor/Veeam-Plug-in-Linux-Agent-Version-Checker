@@ -1,6 +1,6 @@
 ﻿$csvFilePath = "C:\csv\hostnames.csv"   # Path to the CSV file with Linux hostnames
 $username = "root" # Set the backup user name here
-$LogFilePath = "C:\logs\verifier_log.txt" # Path to log file for verification
+$LogFilePath = "C:\logs\version_checker_log.txt" # Path to log file for verification
 $outputCsvFilePath = "C:\csv\veeam_versions.csv" # Output CSV file for Veeam versions
 
 Clear-Content -Path $LogFilePath -ErrorAction SilentlyContinue
@@ -11,7 +11,9 @@ $results = @()
 
 foreach ($hostname in $csvData) {
     
-    Write-Host "Verifying Veeam Plug-in version on $hostname" | Tee-Object -FilePath $LogFilePath -Append
+    $InfoMessage = "Verifying Veeam Plug-in version on $hostname" 
+    Write-Host $InfoMessage
+    Add-Content -Path $LogFilePath -Value "$InfoMessage"
    
     $sshUser = "$username@$hostname"
     $command = "rpm -qa | grep VeeamPlugin"
@@ -25,12 +27,22 @@ foreach ($hostname in $csvData) {
                 Hostname      = $hostname
                 VeeamVersion  = $versionInfo.Trim()
             }
-            Write-Host "Veeam version on $hostname $versionInfo" | Tee-Object -FilePath $LogFilePath -Append
+            $PMessage = "Veeam version on $hostname $versionInfo"
+            Write-Host $PMessage
+            Add-Content -Path $LogFilePath -Value "$PMessage"
         } else {
-            Write-Host "No Veeam installation found on $hostname." | Tee-Object -FilePath $LogFilePath -Append
+            $results += [PSCustomObject]@{
+                Hostname      = $hostname
+                VeeamVersion  = ""
+            }
+            $NMessage = "No Veeam installation found on $hostname."
+            Write-Host $NMessage
+            Add-Content -Path $LogFilePath -Value "$NMessage"
         }
     } catch {
-        Write-Host "Error while accessing $hostname $_" | Tee-Object -FilePath $LogFilePath -Append
+        $EMessage = "Error while accessing $hostname $_"
+        Write-Host $EMessage
+        Add-Content -Path $LogFilePath -Value "$EMessage"
     }
 }
 
